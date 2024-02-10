@@ -14,25 +14,10 @@ class Walker:
         return self.__y
 
     def step(self):
-        if self.__x < 0:
-            self.__x = 0
-        if self.__x > self.__pixel - 1:
-            self.__x = self.__pixel - 1
+        stepX = randint(-1, 1)
+        if 0 <= self.__x + stepX < self.__pixel:
+            self.__x += stepX
 
-        if self.__y < 0:
-            self.__y = 0
-        if self.__y > self.__pixel - 1:
-            self.__y = self.__pixel - 1
-
-        choice = randint(0, 3)
-        if choice == 0:
-            self.__x += 1
-        elif choice == 1:
-            self.__x -= 1
-        elif choice == 2:
-            self.__y += 1
-        elif choice == 3:
-            self.__y -= 1
-
-        if self.__x < 0 or self.__x > (self.__pixel - 1) or self.__y < 0 or (self.__y > self.__pixel - 1):
-            self.step()
+        stepY = randint(-1, 1)
+        if 0 <= self.__y + stepY < self.__pixel:
+            self.__y += stepY

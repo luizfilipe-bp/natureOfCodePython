@@ -2,11 +2,10 @@ import pygame
 from walker import Walker
 from screen import Screen
 
-# Inicialização do Pygame
 pygame.init()
 
 if __name__ == '__main__':
-    screenConfig = (800, 600, 150)
+    screenConfig = (800, 600, 100)
     screen = Screen(screenConfig[0], screenConfig[1], screenConfig[2], 'A Traditional Random Walk')
     walker = Walker(screenConfig[2])
 
