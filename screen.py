@@ -7,22 +7,22 @@ BLACK = (0, 0, 0)
 
 class Screen:
     def __init__(self, width, height, pixel=100, name='Screen'):
-        self.width = width
-        self.height = height
-        self.pixel = pixel  # pixel quantity
-        self.name = name
+        self.__width = width
+        self.__height = height
+        self.__pixel = pixel  # pixel quantity
+        self.__name = name
 
-        self.pygameDisplay = pygame.display.set_mode((self.width, self.height))
-        pygame.display.set_caption(self.name)
+        self.pygameDisplay = pygame.display.set_mode((self.__width, self.__height))
+        pygame.display.set_caption(self.__name)
 
-        self.pixelWidth = width // self.pixel
-        self.pixelHeight = height // self.pixel
+        self.pixelWidth = width // self.__pixel
+        self.pixelHeight = height // self.__pixel
         self.backgroundColor = WHITE
-        self.matrix = [[self.backgroundColor] * self.pixel for _ in range(self.pixel)]
+        self.matrix = [[self.backgroundColor] * self.__pixel for _ in range(self.__pixel)]
 
     def draw(self):
-        for line in range(self.pixel):
-            for row in range(self.pixel):
+        for line in range(self.__pixel):
+            for row in range(self.__pixel):
                 pygame.draw.rect(self.pygameDisplay, self.matrix[line][row],
                                  (row * self.pixelWidth, line * self.pixelHeight, self.pixelWidth, self.pixelHeight))
         pygame.display.flip()
@@ -47,8 +47,7 @@ class Screen:
 
     def whiteToBlack(self, x, y):
         actualColor = self.matrix[x][y]
-        print(f'{x}, {y}')
-        if actualColor[0] - 15 >= 0:
-            self.matrix[x][y] = (actualColor[0] - 15, actualColor[0] - 15, actualColor[0] - 15)
-        print(actualColor)
+        decrease = 51
+        if actualColor[0] - decrease >= 0:
+            self.matrix[x][y] = (actualColor[0] - decrease, actualColor[0] - decrease, actualColor[0] - decrease)
 
