@@ -5,7 +5,7 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
 
-class Screen:
+class ScreenWalker:
     def __init__(self, width, height, pixel=100, name='Screen'):
         self.__width = width
         self.__height = height
@@ -47,7 +47,7 @@ class Screen:
 
     def whiteToBlack(self, x, y):
         actualColor = self.matrix[x][y]
-        decrease = 51
-        if actualColor[0] - decrease >= 0:
-            self.matrix[x][y] = (actualColor[0] - decrease, actualColor[0] - decrease, actualColor[0] - decrease)
+        newColor = actualColor[0] - 51
+        if newColor >= 0:
+            self.matrix[x][y] = (newColor, newColor, newColor)
 
