@@ -21,7 +21,6 @@ class ScreenWalker(Screen):
                 pygame.draw.rect(self.pygameDisplay, self.matrix[line][row],
                                  (row * self.pixelWidth, line * self.pixelHeight, self.pixelWidth, self.pixelHeight))
         pygame.display.flip()
-        self.pygameDisplay.fill(self.matrixColor)
 
     def mouseDetection(self):
         for event in pygame.event.get():
