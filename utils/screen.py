@@ -18,6 +18,9 @@ class Screen:
         self.pygameDisplay.fill(self.__backgroundColor)
         pygame.display.flip()
 
+    def getHeight(self):
+        return self.__height
+
     @staticmethod
     def event():
         for event in pygame.event.get():
