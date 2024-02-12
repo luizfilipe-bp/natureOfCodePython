@@ -1,24 +1,19 @@
 import pygame
-import sys
+from utils.screen import Screen
 
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
 
-class ScreenWalker:
-    def __init__(self, width, height, pixel=100, name='Screen'):
-        self.__width = width
-        self.__height = height
-        self.__pixel = pixel  # pixel quantity
-        self.__name = name
-
-        self.pygameDisplay = pygame.display.set_mode((self.__width, self.__height))
-        pygame.display.set_caption(self.__name)
+class ScreenWalker(Screen):
+    def __init__(self, width, height, name='A Traditional Random Walk', pixel=100):
+        super().__init__(width, height, name)
+        self.__pixel = pixel  # pixel * pixel matrix
 
         self.pixelWidth = width // self.__pixel
         self.pixelHeight = height // self.__pixel
-        self.backgroundColor = WHITE
-        self.matrix = [[self.backgroundColor] * self.__pixel for _ in range(self.__pixel)]
+        self.matrixColor = WHITE
+        self.matrix = [[self.matrixColor] * self.__pixel for _ in range(self.__pixel)]
 
     def draw(self):
         for line in range(self.__pixel):
@@ -26,13 +21,7 @@ class ScreenWalker:
                 pygame.draw.rect(self.pygameDisplay, self.matrix[line][row],
                                  (row * self.pixelWidth, line * self.pixelHeight, self.pixelWidth, self.pixelHeight))
         pygame.display.flip()
-        self.pygameDisplay.fill(self.backgroundColor)
-
-    def event(self):
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+        self.pygameDisplay.fill(self.matrixColor)
 
     def mouseDetection(self):
         for event in pygame.event.get():
@@ -50,4 +39,3 @@ class ScreenWalker:
         newColor = actualColor[0] - 51
         if newColor >= 0:
             self.matrix[x][y] = (newColor, newColor, newColor)
-

@@ -1,5 +1,5 @@
 import pygame
-
+import sys
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
@@ -17,3 +17,10 @@ class Screen:
     def draw(self):
         self.pygameDisplay.fill(self.__backgroundColor)
         pygame.display.flip()
+
+    @staticmethod
+    def event():
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
